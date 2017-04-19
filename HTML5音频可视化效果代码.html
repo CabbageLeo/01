@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>素材家园 - 提示信息</title>
+<link href="http://www.sucaijiayuan.com/statics/css/admin_style.css" rel="stylesheet" />
+<link href="http://www.sucaijiayuan.com/statics/js/artDialog/skins/default.css" rel="stylesheet" />
+<script type="text/javascript">
+//全局变量
+var GV = {
+    DIMAUB: "http://www.sucaijiayuan.com/",
+	JS_ROOT: "http://www.sucaijiayuan.com/statics/js/"
+};
+</script>
+<script src="http://www.sucaijiayuan.com/statics/js/wind.js"></script>
+<script src="http://www.sucaijiayuan.com/statics/js/jquery.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div id="error_tips">
+    <h2>操作失败！</h2>
+    <div class="error_cont">
+      <ul>
+        <li>下载地址非法！</li>
+      </ul>
+      <div class="error_return"><a href="javascript:history.back(-1);" class="btn">返回</a></div>
+    </div>
+  </div>
+</div>
+<script src="http://www.sucaijiayuan.com/statics/js/common.js?v"></script>
+<script language="javascript">
+setTimeout(function(){
+	location.href = 'javascript:history.back(-1);';
+},3000);
+</script>
+</body>
+</html>
