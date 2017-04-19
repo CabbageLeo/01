@@ -1,0 +1,106 @@
+﻿<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <style>
+        .surface{
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-left: -100px;
+            margin-top: -100px;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;perspective: 0px}
+        .rollx,.rolly,.rollxin,.rollyin,.shell,.shellin{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform-origin:center;
+            border-radius: 1000px;
+            border-color: hsl(250,100%,50%);}
+/*
+        #canvas{transform-origin:center;
+            transform:scale(0.5,0.5);rotatex(-20deg) rotatey(-30deg)
+            opacity:1;
+            transform-style: preserve-3d;perspective: 0px ;
+            position: fixed;
+            left: 27%;
+            top: 20%;}
+*/
+/*
+        .surface div{
+            box-shadow: 0 0 10px 0px #fff;}
+*/
+        .shell:last-of-type{}
+    </style>
+</head>
+<body style="background-color: #000;">
+<link rel="stylesheet" type="text/css" href="style.css">
+<audio src="http://pan.plyz.net/s/?u=3190324159&p=1-29%20%e4%b9%97%e3%82%8a%e8%b6%8a%e3%81%88%e3%82%8b%e3%81%b9%e3%81%8d%e5%a3%81.mp3" id="audio" controls>audio element not supported</audio>
+<canvas id='canvas' width="400" height="350"></canvas>
+<script src="main.js"></script>
+
+
+
+<div class="surface">
+<!--
+    <div class="shell"style="transform: rotatex(90deg)"></div>
+    <div class="shell"style="transform: rotatey(90deg)"></div>
+-->
+    <div class="shell"></div>
+    <div class="shellin"></div>
+</div>
+
+<br>
+<br>
+<script>
+    for (var i=0;i<2;i++){
+        $(".surface").append("<div class='rollx'></div>")
+        $(".surface").append("<div class='rolly'></div>")
+        $(".surface").append("<div class='rollxin'></div>")
+        $(".surface").append("<div class='rollyin'></div>")
+    };
+    console.log($(".surface"))
+$("body").on("selfedit",function () {
+    var rotatecount=0
+    setInterval(function () {
+        for(var i=0;i<3;i++){
+            $(".rollx").eq(i).css({transform:"rotatex("+rotatecount*(i+1)+"deg) rotatey("+rotatecount*(i+1)+"deg)"})
+            $(".rollxin").eq(i).css({transform:"rotatex("+rotatecount*(i+1)+"deg) rotatey("+rotatecount*(i+1)+"deg)"})
+            $(".rolly").eq(i).css({transform:"rotatey("+rotatecount*(i+1)+"deg) rotatex("+rotatecount*(i+1)+"deg)"})
+            $(".rollyin").eq(i).css({transform:"rotatey("+rotatecount*(i+1)+"deg) rotatex("+rotatecount*(i+1)+"deg)"})
+
+
+        }
+        $(".surface").children().css({borderColor:"hsla("+rotatecount+",100%,50%,0.8)",boxShadow:"0 0 10px 0px "+"hsla("+rotatecount+",100%,50%,0.8) "})
+
+        $(".rollxin").css({boxShadow:"0 0 10px 0px "+"hsla("+rotatecount+",100%,50%,0.8) inset"})
+        $(".rollyin").css({boxShadow:"0 0 10px 0px "+"hsla("+rotatecount+",100%,50%,0.8) inset"})
+
+        $(".surface").css({transform:"rotatex("+rotatecount+"deg) rotatey("+rotatecount+"deg)"})
+/*
+        $(".rollx").eq(0).css({transform:"rotatex("+rotatecountx+"deg) rotatey("+rotatecounty+"deg)"})
+        $(".rolly").eq(0).css({transform:"rotatey("+rotatecountx+"deg) rotatex("+rotatecounty+"deg)"})
+        $(".rollx").eq(1).css({transform:"rotatex("+(rotatecountx*2)+"deg) rotatey("+rotatecounty*2+"deg)"})
+        $(".rolly").eq(1).css({transform:"rotatey("+rotatecountx*2+"deg) rotatex("+rotatecounty*2+"deg)"})
+        $(".rollx").eq(2).css({transform:"rotatex("+rotatecountx*3+"deg) rotatey("+rotatecounty*3+"deg)"})
+        $(".rolly").eq(3).css({transform:"rotatey("+rotatecountx*4+"deg) rotatex("+rotatecounty*4+"deg)"})
+*/
+        rotatecount++
+        if(rotatecount==360){
+            rotatecount=0
+        }
+    },50)
+    })
+    $('body').trigger("selfedit");
+
+</script>
+</body>
+</html>
